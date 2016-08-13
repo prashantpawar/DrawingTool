@@ -18,14 +18,6 @@ module.exports = function createRectangle(commandElements, inScreenBuffer) {
   createLine(['L', x2, y1, x2, y2], outScreenBuffer);
   createLine(['L', x2, y2, x1, y2], outScreenBuffer);
   createLine(['L', x1, y2, x1, y1], outScreenBuffer);
-  /**
-  processCommands([
-    ['L', x1, y1, x1, y2],
-    ['L', x1, y2, x1, y2],
-    ['L', x1, y1, x2, y1],
-    ['L', x2, y1, x2, y1]
-  ]);
-  **/
 
   return outScreenBuffer;
 };
