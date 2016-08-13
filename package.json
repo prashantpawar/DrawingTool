@@ -1,0 +1,14 @@
+{
+  "name": "drawingtool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "Prashant Singh Pawar <prashantpawar@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.1"
+  }
+}
