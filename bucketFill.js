@@ -1,8 +1,6 @@
 "use strict";
 
 module.exports = function bucketFill(commandElements, inScreenBuffer) {
-  console.log('bucketFill', commandElements);
-
   var outScreenBuffer = inScreenBuffer.slice(); //to clone the array
 
   var x = parseInt(commandElements[1], 10);

@@ -1,6 +1,4 @@
 module.exports = function createCanvas(commandElements, inScreenBuffer) {
-  console.log('createCanvas', commandElements);
-
   var outScreenBuffer = inScreenBuffer.slice(); //to clone the array
 
   var width = parseInt(commandElements[1], 10);

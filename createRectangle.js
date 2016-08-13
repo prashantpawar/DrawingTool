@@ -3,8 +3,6 @@
 var createLine = require('./createLine');
 
 module.exports = function createRectangle(commandElements, inScreenBuffer) {
-  console.log('createRectangle', commandElements);
-
   var outScreenBuffer = inScreenBuffer.slice(); //to clone the array
 
   var strokeChar = 'x';

@@ -1,8 +1,6 @@
 "use strict";
 
 module.exports = function createLine(commandElements, inScreenBuffer) {
-  console.log('createLine', commandElements);
-
   var outScreenBuffer = inScreenBuffer.slice(); //to clone the array
 
   var strokeChar = 'x';
@@ -26,11 +24,9 @@ module.exports = function createLine(commandElements, inScreenBuffer) {
 
   for(var i = x1; i <= x2; i++) {
     for(var j = y1; j <= y2; j++) {
-      //console.log(i, j);
       outScreenBuffer[j][i] = strokeChar;
     }
   }
-  //console.log(outScreenBuffer);
 
   return outScreenBuffer;
 };
