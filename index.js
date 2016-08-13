@@ -7,12 +7,11 @@ var processCommands = require('./processCommands.js').processCommands;
 var readFile = Promise.promisify(require("fs").readFile);
 
 function printScreenBuffer(screenBuffer) {
-  //For now just print the last state
-  var finalState = screenBuffer.pop();
-  finalState = finalState.map(function (line) {
-    console.log(line.join(''));
+  screenBuffer.map(function (state) {
+    state.map(function (line) {
+      console.log(line.join(''));
+    });
   });
-  console.log(finalState.join('\n'));
   return screenBuffer;
 }
 

@@ -25,6 +25,7 @@ module.exports = {
           screenBuffer = bucketFill(commandElements, screenBuffer);
           return screenBuffer;
         default:
+          console.log('invalid command');
           process.exit(1);
       }
     });

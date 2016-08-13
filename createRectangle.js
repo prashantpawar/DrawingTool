@@ -1,9 +1,12 @@
 "use strict";
+var clone = require('./utils.js').clone;
 
 var createLine = require('./createLine');
 
 module.exports = function createRectangle(commandElements, inScreenBuffer) {
-  var outScreenBuffer = inScreenBuffer.slice(); //to clone the array
+  console.log('createRectangle', commandElements);
+
+  var outScreenBuffer = clone(inScreenBuffer); //to clone the array
 
   var strokeChar = 'x';
   //No need to parse them to Int since createLine does that for us
@@ -12,10 +15,10 @@ module.exports = function createRectangle(commandElements, inScreenBuffer) {
   var x2 = commandElements[3];
   var y2 = commandElements[4];
   
-  createLine(['L', x1, y1, x2, y1], outScreenBuffer);
-  createLine(['L', x2, y1, x2, y2], outScreenBuffer);
-  createLine(['L', x2, y2, x1, y2], outScreenBuffer);
-  createLine(['L', x1, y2, x1, y1], outScreenBuffer);
+  outScreenBuffer = createLine(['L', x1, y1, x2, y1], outScreenBuffer);
+  outScreenBuffer = createLine(['L', x2, y1, x2, y2], outScreenBuffer);
+  outScreenBuffer = createLine(['L', x2, y2, x1, y2], outScreenBuffer);
+  outScreenBuffer = createLine(['L', x1, y2, x1, y1], outScreenBuffer);
 
   return outScreenBuffer;
 };

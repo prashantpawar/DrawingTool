@@ -1,7 +1,10 @@
 "use strict";
+var clone = require('./utils.js').clone;
 
 module.exports = function createLine(commandElements, inScreenBuffer) {
-  var outScreenBuffer = inScreenBuffer.slice(); //to clone the array
+  console.log('createLine', commandElements);
+
+  var outScreenBuffer = clone(inScreenBuffer); //to clone the array
 
   var strokeChar = 'x';
   var x1 = parseInt(commandElements[1], 10);

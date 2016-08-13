@@ -1,8 +1,8 @@
 "use strict";
 
 module.exports = {
-  translateToRealCoordinates: function translateToRealCoordinates(x) {
-      return x + 1;
+  clone: function clone(x) {
+    return JSON.parse(JSON.stringify(x));
   }
 };
 

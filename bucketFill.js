@@ -1,7 +1,10 @@
 "use strict";
+var clone = require('./utils.js').clone;
 
 module.exports = function bucketFill(commandElements, inScreenBuffer) {
-  var outScreenBuffer = inScreenBuffer.slice(); //to clone the array
+  console.log('bucketFill', commandElements);
+
+  var outScreenBuffer = clone(inScreenBuffer); //to clone the array
 
   var x = parseInt(commandElements[1], 10);
   var y = parseInt(commandElements[2], 10);
@@ -13,10 +16,10 @@ module.exports = function bucketFill(commandElements, inScreenBuffer) {
   }
   outScreenBuffer[y][x] = c;
 
-  bucketFill(['B', x+1, y, c], outScreenBuffer);
-  bucketFill(['B', x, y+1, c], outScreenBuffer);
-  bucketFill(['B', x-1, y, c], outScreenBuffer);
-  bucketFill(['B', x, y-1, c], outScreenBuffer);
+  outScreenBuffer = bucketFill(['B', x+1, y, c], outScreenBuffer);
+  outScreenBuffer = bucketFill(['B', x, y+1, c], outScreenBuffer);
+  outScreenBuffer = bucketFill(['B', x-1, y, c], outScreenBuffer);
+  outScreenBuffer = bucketFill(['B', x, y-1, c], outScreenBuffer);
 
   return outScreenBuffer;
 };
