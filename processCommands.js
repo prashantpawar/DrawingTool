@@ -9,8 +9,8 @@ module.exports = {
   processCommands: function processCommands(commands, screenBuffer) {
     screenBuffer = screenBuffer || [[]];
 
-    return commands.map(function (command) {
-      var commandElements = command.split(' ');
+    return commands.map(function (command, index) {
+      var commandElements = command.trim().split(' ');
       switch(commandElements[0]) {
         case 'C':
           screenBuffer = createCanvas(commandElements, screenBuffer);
@@ -25,7 +25,7 @@ module.exports = {
           screenBuffer = bucketFill(commandElements, screenBuffer);
           return screenBuffer;
         default:
-          console.log('invalid command');
+          console.log('Invalid command Line ' + (index + 1) + ': "' + commandElements[0] + '" is not a valid command');
           process.exit(1);
       }
     });

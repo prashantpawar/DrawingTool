@@ -14,9 +14,9 @@ var main = function main (argv) {
   var fileName = argv[2];
 
   if(!fileName) {
-    console.log('Usage:');
-    console.log('node index.js <input filename>');
-    process.exit(1);
+    var errorMsg = 'Usage: ';
+    errorMsg += 'node index.js <input filename>';
+    return Promise.reject(errorMsg);
   }
 
   return readFile(fileName)

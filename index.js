@@ -11,5 +11,11 @@ function printScreenBuffer(screenBuffer) {
   return screenBuffer;
 }
 
+function error(message) {
+  console.log('Error', message);
+  process.exit(1);
+}
 
-main(process.argv).then(printScreenBuffer);
+main(process.argv)
+  .then(printScreenBuffer)
+  .catch(error);
