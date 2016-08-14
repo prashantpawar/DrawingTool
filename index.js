@@ -28,7 +28,6 @@ var main = function main () {
     process.exit(1);
   }
 
-  console.log('Processing', fileName);
   readFile(fileName)
     .then(splitLines)
     .then(processCommands)

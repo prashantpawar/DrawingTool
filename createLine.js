@@ -2,9 +2,7 @@
 var clone = require('./utils.js').clone;
 
 module.exports = function createLine(commandElements, inScreenBuffer) {
-  console.log('createLine', commandElements);
-
-  var outScreenBuffer = clone(inScreenBuffer); //to clone the array
+  var outScreenBuffer = clone(inScreenBuffer); //to keep things immutable
 
   var strokeChar = 'x';
   var x1 = parseInt(commandElements[1], 10);

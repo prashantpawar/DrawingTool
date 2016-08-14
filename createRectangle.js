@@ -4,8 +4,6 @@ var clone = require('./utils.js').clone;
 var createLine = require('./createLine');
 
 module.exports = function createRectangle(commandElements, inScreenBuffer) {
-  console.log('createRectangle', commandElements);
-
   var outScreenBuffer = clone(inScreenBuffer); //to clone the array
 
   var strokeChar = 'x';
