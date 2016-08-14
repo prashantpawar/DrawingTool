@@ -2,9 +2,10 @@
 var clone = require('./utils.js').clone;
 
 module.exports = function bucketFill(commandElements, inScreenBuffer) {
-  console.log('bucketFill', commandElements);
-
   var outScreenBuffer = clone(inScreenBuffer); //to clone the array
+  if(outScreenBuffer.length === 1) {
+    return outScreenBuffer;
+  }
 
   var x = parseInt(commandElements[1], 10);
   var y = parseInt(commandElements[2], 10);
