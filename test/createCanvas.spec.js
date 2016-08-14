@@ -1,5 +1,6 @@
 "use strict";
 var proxyquire =  require('proxyquire');
+
 var chai = require("chai");
 var sinon = require("sinon");
 var sinonChai = require("sinon-chai");
@@ -9,12 +10,14 @@ chai.use(sinonChai);
 var createCanvas;
 
 var canvasCommand = 'C 3 4'.split(' ');
+var screenBuffer;
 
 var processCommands;
 
 describe('createCanvas', function () {
   beforeEach(function () {
     createCanvas = sinon.spy(require('../createCanvas'));
+    screenBuffer = [[]];
   });
 
   it('should be defined', function () {
@@ -22,14 +25,12 @@ describe('createCanvas', function () {
   });
 
   it('should not mutate screenBuffer', function () {
-    var screenBuffer = [[]],
-      newScreenBuffer;
+    var newScreenBuffer;
     newScreenBuffer = createCanvas(canvasCommand, screenBuffer);
     expect(screenBuffer).to.not.deep.equal(newScreenBuffer);
   });
 
   it('should create a canvas', function () {
-    var screenBuffer = [[]];
     screenBuffer = createCanvas(canvasCommand, screenBuffer);
     expect(screenBuffer).to.deep.equal([
       [ '-', '-', '-', '-', '-' ],
@@ -39,5 +40,12 @@ describe('createCanvas', function () {
       [ '|', ' ', ' ', ' ', '|' ],
       [ '-', '-', '-', '-', '-' ]
     ]);
+  });
+
+  it('should draw the canvas only once', function () {
+    var newScreenBuffer;
+    screenBuffer = createCanvas(canvasCommand, screenBuffer);
+    newScreenBuffer = createCanvas('C 3 1'.split(' '), screenBuffer);
+    expect(newScreenBuffer).to.deep.equal(screenBuffer);
   });
 });

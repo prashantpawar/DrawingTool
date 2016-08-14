@@ -10,6 +10,7 @@ chai.use(sinonChai);
 var createLine;
 
 var lineCommand = 'L 2 4 2 2'.split(' ');
+var outOfBoundsLineCommand = 'L -2 9 -2 2'.split(' ');
 var initScreenBuffer = [
   [ '-', '-', '-', '-', '-' ],
   [ '|', ' ', ' ', ' ', '|' ],
@@ -37,7 +38,7 @@ describe('createLine', function () {
     expect(initScreenBuffer).to.not.deep.equal(newScreenBuffer);
   });
 
-  it('should create a canvas', function () {
+  it('should create a line', function () {
     var newScreenBuffer = createLine(lineCommand, initScreenBuffer);
     expect(newScreenBuffer).to.deep.equal([
       [ '-', '-', '-', '-', '-' ],
@@ -47,5 +48,10 @@ describe('createLine', function () {
       [ '|', ' ', 'x', ' ', '|' ],
       [ '-', '-', '-', '-', '-' ]
     ]);
+  });
+
+  it('should not draw outside the canvas', function () {
+    var newScreenBuffer = createLine(outOfBoundsLineCommand, initScreenBuffer);
+    expect(newScreenBuffer).to.deep.equal(initScreenBuffer);
   });
 });

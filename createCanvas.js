@@ -3,6 +3,9 @@ var clone = require('./utils.js').clone;
 
 module.exports = function createCanvas(commandElements, inScreenBuffer) {
   var outScreenBuffer = clone(inScreenBuffer); //to clone the array
+  if(inScreenBuffer.length !== 1) {
+    return outScreenBuffer;
+  }
 
   var width = parseInt(commandElements[1], 10);
   var height = parseInt(commandElements[2], 10);

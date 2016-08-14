@@ -15,6 +15,7 @@ var canvasCommand = 'C 3 4';
 var lineCommand = 'L 2 4 20 3';
 var rectangleCommand = 'R 2 4 20 3';
 var bucketFillCommand = 'B 10 3 o';
+var invalidCommand = 'K 10 3';
 
 var processCommands;
 
@@ -64,5 +65,17 @@ describe('processCommands', function () {
     var screenBuffer = [[]];
     processCommands([bucketFillCommand], screenBuffer);
     expect(bucketFillStub).to.have.been.calledWith(bucketFillCommand.trim().split(' '), screenBuffer);
+  });
+
+  it('should not process invalid commands', function () {
+    var screenBuffer = [[]], stateArray;
+    var savedConsoleLog = console.log;
+    var consoleStub = sinon.stub(console, 'log');
+
+    stateArray = processCommands([invalidCommand], screenBuffer);
+    expect(stateArray).to.deep.equal([]);
+
+    console.log = savedConsoleLog;
+    expect(consoleStub).to.have.been.calledWith('Invalid command Line 1: "K" is not a valid command');
   });
 });

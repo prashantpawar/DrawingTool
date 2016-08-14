@@ -10,6 +10,7 @@ chai.use(sinonChai);
 var bucketFill;
 
 var bucketFillCommand = 'B 1 1 o'.split(' ');
+var outOfBoundsBucketFillCommand = 'B -1 10 o'.split(' ');
 var initScreenBuffer = [
   [ '-', '-', '-', '-', '-' ],
   [ '|', ' ', ' ', ' ', '|' ],
@@ -47,5 +48,10 @@ describe('bucketFill', function () {
       [ '|', 'x', 'x', 'x', '|' ],
       [ '-', '-', '-', '-', '-' ]
     ]);
+  });
+
+  it('should not fill outside the canvas', function () {
+    var newScreenBuffer = bucketFill(outOfBoundsBucketFillCommand, initScreenBuffer);
+    expect(newScreenBuffer).to.deep.equal(initScreenBuffer);
   });
 });

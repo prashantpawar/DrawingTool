@@ -10,6 +10,7 @@ chai.use(sinonChai);
 var createRectangle;
 
 var rectangleCommand = 'R 3 4 1 2'.split(' ');
+var outOfBoundsRectangleCommand = 'R 3 9 -1 2'.split(' ');
 var initScreenBuffer = [
   [ '-', '-', '-', '-', '-' ],
   [ '|', ' ', ' ', ' ', '|' ],
@@ -47,5 +48,10 @@ describe('createRectangle', function () {
       [ '|', 'x', 'x', 'x', '|' ],
       [ '-', '-', '-', '-', '-' ]
     ]);
+  });
+
+  it('should not draw outside the canvas', function () {
+    var newScreenBuffer = createRectangle(outOfBoundsRectangleCommand, initScreenBuffer);
+    expect(newScreenBuffer).to.deep.equal(initScreenBuffer);
   });
 });

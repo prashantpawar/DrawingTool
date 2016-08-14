@@ -1,5 +1,6 @@
 "use strict";
 var clone = require('./utils.js').clone;
+var ifValidCoordinates = require('./utils.js').ifValidCoordinates;
 
 module.exports = function bucketFill(commandElements, inScreenBuffer) {
   var outScreenBuffer = clone(inScreenBuffer); //to clone the array
@@ -10,6 +11,10 @@ module.exports = function bucketFill(commandElements, inScreenBuffer) {
   var x = parseInt(commandElements[1], 10);
   var y = parseInt(commandElements[2], 10);
   var c = commandElements[3];
+
+  if(!ifValidCoordinates({x: [x], y: [y]}, outScreenBuffer)) {
+    return outScreenBuffer;
+  }
 
   //Our screenBuffer is stored as Y,X
   if(outScreenBuffer[y][x] !== ' ') {

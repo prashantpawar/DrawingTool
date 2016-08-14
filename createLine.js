@@ -1,5 +1,6 @@
 "use strict";
 var clone = require('./utils.js').clone;
+var ifValidCoordinates = require('./utils.js').ifValidCoordinates;
 
 module.exports = function createLine(commandElements, inScreenBuffer) {
   var outScreenBuffer = clone(inScreenBuffer); //to keep things immutable
@@ -12,6 +13,10 @@ module.exports = function createLine(commandElements, inScreenBuffer) {
   var y1 = parseInt(commandElements[2], 10);
   var x2 = parseInt(commandElements[3], 10);
   var y2 = parseInt(commandElements[4], 10);
+
+  if(!ifValidCoordinates({x: [x1, x2], y: [y1, y2]}, outScreenBuffer)) {
+    return outScreenBuffer;
+  }
 
   //If x1 > x2 or y1 > y2 then swap the values to make our loop work either way
   if(x1 > x2) {
