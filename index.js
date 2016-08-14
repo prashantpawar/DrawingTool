@@ -1,10 +1,6 @@
 "use strict";
 
-var Promise = require('bluebird');
-
-var processCommands = require('./processCommands.js').processCommands;
-
-var readFile = Promise.promisify(require("fs").readFile);
+var main = require('./main.js');
 
 function printScreenBuffer(screenBuffer) {
   screenBuffer.map(function (state) {
@@ -15,23 +11,5 @@ function printScreenBuffer(screenBuffer) {
   return screenBuffer;
 }
 
-function splitLines(data) {
-  return data.toString().split('\n');
-}
 
-var main = function main () {
-  var fileName = process.argv[2];
-
-  if(!fileName) {
-    console.log('Usage:');
-    console.log('node index.js <input filename>');
-    process.exit(1);
-  }
-
-  readFile(fileName)
-    .then(splitLines)
-    .then(processCommands)
-    .then(printScreenBuffer);
-};
-
-main();
+main(process.argv).then(printScreenBuffer);
