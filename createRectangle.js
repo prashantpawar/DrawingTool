@@ -5,6 +5,9 @@ var createLine = require('./createLine');
 
 module.exports = function createRectangle(commandElements, inScreenBuffer) {
   var outScreenBuffer = clone(inScreenBuffer); //to clone the array
+  if(outScreenBuffer.length === 1) {
+    return outScreenBuffer;
+  }
 
   var strokeChar = 'x';
   //No need to parse them to Int since createLine does that for us

@@ -26,7 +26,7 @@ module.exports = {
           return screenBuffer;
         default:
           console.log('Invalid command Line ' + (index + 1) + ': "' + commandElements[0] + '" is not a valid command');
-          process.exit(1);
+          return screenBuffer;
       }
     });
   }
